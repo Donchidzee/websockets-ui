@@ -9,6 +9,10 @@ wss.on("connection", function connection(ws) {
     console.log(`Received message: ${message}`);
     handleMessage(ws, parsedMessage);
   });
+
+  ws.on("close", () => {
+    console.log(`Connection closed for player ${ws.playerName}`);
+  });
 });
 
 export { wss };

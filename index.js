@@ -7,3 +7,11 @@ console.log(`Start static http server on the ${HTTP_PORT} port!`);
 httpServer.listen(HTTP_PORT);
 
 console.log(`WebSocket server is running on port 3000`);
+
+process.on("SIGINT", () => {
+  console.log("Shutting down server...");
+  wss.close(() => {
+    console.log("WebSocket server closed.");
+    process.exit();
+  });
+});

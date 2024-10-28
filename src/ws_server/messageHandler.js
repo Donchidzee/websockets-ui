@@ -6,6 +6,8 @@ import { handleAttack } from "./handlers/game.js";
 export function handleMessage(ws, message) {
   const { type, data, id } = message;
 
+  console.log(`Received command: ${JSON.stringify(message)}`);
+
   switch (type) {
     case "reg":
       handleRegistration(ws, data);
@@ -26,4 +28,6 @@ export function handleMessage(ws, message) {
       console.log(`Unknown message type: ${type}`);
       break;
   }
+
+  console.log(`Handled command of type: ${type}`);
 }
